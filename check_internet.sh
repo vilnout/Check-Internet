@@ -4,16 +4,17 @@ PROGNAME=$(basename "$0")
 CACHE_FILE=~/.cache/run_ping/state.txt
 
 usage() {
-  echo 'Run a connectivity test using ping, which tests after a sleep interval and displays error after error count'
+  echo 'Run a connectivity test using ping'
   echo "Usage: $PROGNAME [options]"
   cat <<_EOF_
 
-  -a        Address to ping(default=8.8.8.8)
-  -s        Interval between pings(default=3s)
-  -e        Errors before action(deafult=3)
-  -p       Notification priority(default=critical)
-  -t       Timeout in seconds at which to expire the notification, only when priority other than critical(default=5s)
+  -a        Address to ping (default=8.8.8.8)
+  -s        Interval between pings (default=3s)
+  -e        Errors before action (deafult=3)
+  -p        Notification priority (default=critical)
+  -t        Timeout in seconds at which to expire the notification, only when priority other than critical (default=5s)
 _EOF_
+  exit
 }
 
 quit() {
@@ -97,7 +98,6 @@ while :; do
     ;;
   -?*)
     usage
-    quit "Error: Unknown option "$1""
     ;;
   *)
     break
